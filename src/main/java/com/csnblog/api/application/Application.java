@@ -1,12 +1,12 @@
-package com.csnblog.api.cnsblog_api;
+package com.csnblog.api.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CnsblogApiApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CnsblogApiApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
