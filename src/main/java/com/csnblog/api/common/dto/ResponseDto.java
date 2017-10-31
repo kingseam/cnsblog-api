@@ -1,5 +1,9 @@
 package com.csnblog.api.common.dto;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +12,8 @@ import java.util.List;
  * ok, fail Factory 메서드로만 생성가능. setter 미제공.
  * @param <T>
  */
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public class ResponseDto<T> {
     private String code;
     private String message;
@@ -33,23 +39,5 @@ public class ResponseDto<T> {
 
     public static ResponseDto<?> fail(String code, String message){
         return new ResponseDto<>(code, message, Collections.emptyList());
-    }
-
-    private ResponseDto(String code, String message, List<T> data){
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public String getCode(){
-        return this.code;
-    }
-
-    public String getMessage(){
-        return this.message;
-    }
-
-    public List<T> getData(){
-        return this.data;
     }
 }
