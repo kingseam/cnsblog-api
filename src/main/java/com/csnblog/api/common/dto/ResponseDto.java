@@ -1,43 +1,46 @@
 package com.csnblog.api.common.dto;
 
+import com.csnblog.api.common.enumclass.ResponseCode;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-/**
- * API Response 객체.
- * ok, fail Factory 메서드로만 생성가능. setter 미제공.
- * @param <T>
- */
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class ResponseDto<T> {
-    private String code;
-    private String message;
-    private List<T> data;
-    private static final ResponseDto<?> OK = new ResponseDto<>("200", "ok", Collections.emptyList());
+public class ResponseDto {
+    private ResponseCode code;
+    private Map<String, Object> data;
 
-    /**
-     * data를 보유하지않는 응답형 DTO.
-     * 상태가 변할여지가 없는 default 객체이므로 상수 반환.
-     * @return
-     */
-    public static ResponseDto<?> ok(){
-        return OK;
-    }
+    public static class Builder {
+        private ResponseCode code;
+        private Map<String, Object> data;
 
-    public static <T> ResponseDto<T> ok(List<T> data){
-        return new ResponseDto<>("200", "ok", data);
-    }
+        public Builder() {
+            this.data = new HashMap<>();
+        }
 
-    public static <T> ResponseDto<T> ok(String code, String message, List<T> data){
-        return new ResponseDto<>(code, message, data);
-    }
+        public Builder responseCode(ResponseCode code) {
+            this.code = code;
+            return this;
+        }
 
-    public static ResponseDto<?> fail(String code, String message){
-        return new ResponseDto<>(code, message, Collections.emptyList());
+        public Builder data(String key, Object value) {
+            this.data.put(key, value);
+
+            return this;
+        }
+
+        public ResponseDto build() {
+            ResponseDto dto = new ResponseDto();
+            dto.code = Optional.ofNullable(this.code)
+                                .orElse(ResponseCode.SUCCESS);
+            dto.data = this.data;
+
+            return dto;
+        }
     }
 }
