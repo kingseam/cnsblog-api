@@ -25,7 +25,14 @@ dependencies {
     compile('org.openkoreantext:open-korean-text:2.1.1')
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("mysql:mysql-connector-java:5.0.8")
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+
+    //add lombok
+    compile("org.projectlombok:lombok:1.16.18")
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+    compile("org.apache.commons:commons-dbcp2:2.1.1")
+    runtime('mysql:mysql-connector-java')
+
     testCompile("junit:junit")
 }
 
