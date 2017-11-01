@@ -28,9 +28,11 @@ public class ResponseDto {
 
 		public Builder(ResponseCode code) {
 			this.code = code;
+			data = Maps.newHashMap();
 		}
 
 		public Builder(Map<String, Object> data) {
+			this.code = ResponseCode.DEFAULT;
 			this.data = data;
 		}
 
@@ -46,11 +48,6 @@ public class ResponseDto {
 
 		public Builder useResFail(ResponseCode code) {
 			this.code = code;
-			return this;
-		}
-
-		public Builder useResData(Map<String, Object> data) {
-			this.data = data;
 			return this;
 		}
 
