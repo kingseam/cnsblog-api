@@ -25,6 +25,10 @@ public class ResponseDto {
         	data = null;
 		}
 
+        public Builder(ResponseCode code) {
+        	this.code = code;
+		}
+
         public Builder(Map<String, Object> data) {
         	this.data = data;
 		}
