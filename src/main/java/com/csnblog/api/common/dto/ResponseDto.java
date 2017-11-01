@@ -53,5 +53,9 @@ public class ResponseDto {
         	return this;
         }
 
+        public ResponseDto build() {
+	        return new ResponseDto(this);
+	    }
+
     }
 }
