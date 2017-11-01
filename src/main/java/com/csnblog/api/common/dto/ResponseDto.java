@@ -1,46 +1,53 @@
 package com.csnblog.api.common.dto;
 
-import com.csnblog.api.common.enumclass.ResponseCode;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+import com.csnblog.api.common.enumclass.ResponseCode;
+
+import lombok.Getter;
+
 @Getter
 public class ResponseDto {
     private ResponseCode code;
     private Map<String, Object> data;
+
+    private ResponseDto(Builder builder) {
+		this.code = builder.code;
+		this.data = builder.data;
+	}
 
     public static class Builder {
         private ResponseCode code;
         private Map<String, Object> data;
 
         public Builder() {
-            this.data = new HashMap<>();
+        	code = ResponseCode.DEFAULT;
+        	data = null;
+		}
+
+        public Builder(Map<String, Object> data) {
+        	this.data = data;
+		}
+
+        public Builder(ResponseCode code, Map<String, Object> data) {
+        	this.code = code;
+        	this.data = data;
+		}
+
+        public Builder useResFail() {
+        	this.code = ResponseCode.FAIL;
+        	return this;
         }
 
-        public Builder responseCode(ResponseCode code) {
-            this.code = code;
-            return this;
+        public Builder useResFail(ResponseCode code) {
+        	this.code = code;
+	        return this;
+	    }
+
+        public Builder useResData(Map<String, Object> data){
+        	this.data = data;
+        	return this;
         }
 
-        public Builder data(String key, Object value) {
-            this.data.put(key, value);
-
-            return this;
-        }
-
-        public ResponseDto build() {
-            ResponseDto dto = new ResponseDto();
-            dto.code = Optional.ofNullable(this.code)
-                                .orElse(ResponseCode.SUCCESS);
-            dto.data = this.data;
-
-            return dto;
-        }
     }
 }
