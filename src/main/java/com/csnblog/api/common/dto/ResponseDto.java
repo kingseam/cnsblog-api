@@ -3,6 +3,7 @@ package com.csnblog.api.common.dto;
 import java.util.Map;
 
 import com.csnblog.api.common.enumclass.ResponseCode;
+import com.google.common.collect.Maps;
 
 import lombok.Getter;
 
@@ -22,7 +23,7 @@ public class ResponseDto {
 
 		public Builder() {
 			code = ResponseCode.DEFAULT;
-			data = null;
+			data = Maps.newHashMap();
 		}
 
 		public Builder(ResponseCode code) {

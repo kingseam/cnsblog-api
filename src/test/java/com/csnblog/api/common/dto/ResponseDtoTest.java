@@ -3,6 +3,8 @@ package com.csnblog.api.common.dto;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.csnblog.api.common.enumclass.ResponseCode;
@@ -16,22 +18,26 @@ public class ResponseDtoTest {
     public void default_create(){
         ResponseDto dto = new ResponseDto.Builder().build();
 
-        assertThat(dto.getCode(), is(ResponseCode.SUCCESS));
+        assertThat(dto.getCode(), is(ResponseCode.DEFAULT));
     }
 
     @Test
     public void builder_create(){
         ResponseDto dto = new ResponseDto.Builder().useResFail().build();
 
-//        Person data1 = new Person("name", 29);
-//        Person1 data2 = new Person1("data2", 29);
-//        Person element = new Person("collection", 29);
-//
-//        Map<String, Object> resultMap = dto.getData();
-//
-//        assertThat(resultMap.get("data1"), is(data1));
-//        assertThat(resultMap.get("data2"), is(data2));
-//        assertThat(resultMap.get("collection"), is(Arrays.asList(element)));
+        Person data1 = new Person("name", 29);
+        Person1 data2 = new Person1("data2", 29);
+        Person element = new Person("collection", 29);
+
+        dto.getData().put("data1", data1);
+        dto.getData().put("data2", data2);
+        dto.getData().put("element", element);
+
+        Map<String, Object> resultMap = dto.getData();
+
+        assertThat(resultMap.get("data1"), is(data1));
+        assertThat(resultMap.get("data2"), is(data2));
+        assertThat(resultMap.get("element"), is(element));
     }
 
     @Test

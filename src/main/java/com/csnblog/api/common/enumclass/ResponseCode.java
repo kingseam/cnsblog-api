@@ -9,8 +9,8 @@ import lombok.Getter;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 @Getter
 public enum ResponseCode {
-	DEFAULT("0000", "success"),
     SUCCESS("0000", "success"),
+    DEFAULT("0000", "success"),
 	FAIL("9999", "file");
 
     private final String code;

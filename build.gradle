@@ -25,6 +25,7 @@ dependencies {
     compile('org.openkoreantext:open-korean-text:2.1.1')
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("mysql:mysql-connector-java:5.0.8")
+    compile('com.google.guava:guava:14.0.1')
 
     //add lombok
     compile("org.projectlombok:lombok:1.16.18")
