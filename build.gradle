@@ -26,22 +26,20 @@ dependencies {
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("mysql:mysql-connector-java:5.0.8")
     compile('com.google.guava:guava:14.0.1')
-
-    //add lombok
     compile("org.projectlombok:lombok:1.16.18")
-
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
-    compile("org.apache.commons:commons-dbcp2:2.1.1")
-    runtime('mysql:mysql-connector-java')
-
+    compile("org.apache.commons:commons-dbcp2:2.1.1")    
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.2.0.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.8.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.7.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.5.7.RELEASE'    
+    runtime('mysql:mysql-connector-java') 
     testCompile("junit:junit")
-
-    //todo logback
 }
 
 jar {
     manifest {
-		attributes 'Main-Class' : 'com.cnsblog.api.application.Application', 'Version' : 1.0
+		attributes 'Main-Class' : 'com.cnsblog.api.Application', 'Version' : 1.0
 	}
 	archiveName "cnsblog_api.jar"
     dependsOn configurations.runtime
