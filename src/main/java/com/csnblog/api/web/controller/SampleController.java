@@ -1,17 +1,20 @@
 package com.csnblog.api.web.controller;
 
 import com.csnblog.api.common.constant.ResponseAttribute;
+import com.csnblog.api.common.dto.RequestDto;
 import com.csnblog.api.common.dto.ResponseDto;
 import com.csnblog.api.common.enumclass.ResponseCode;
 import com.csnblog.api.web.controller.template.JsonResponseTemplate;
 import com.csnblog.api.web.domain.Sample;
 import com.csnblog.api.web.service.SampleService;
 import com.google.common.collect.Maps;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -70,12 +73,28 @@ public class SampleController {
 	}
 
 	@PostMapping("/request")
-	public @ResponseBody ResponseDto sampleRequestController(){
-		return new ResponseDto.Builder().build();
+	public @ResponseBody ResponseDto sampleRequestController(@RequestBody RequestDto<Person> dto){
+		Map<String, Object> map = new HashMap<>();
+		map.put("check", dto.getParam() instanceof Person);
+		return new ResponseDto.Builder(map).build();
 	}
 
-	static class Person{
+	@PostMapping("/request/collection")
+	public @ResponseBody ResponseDto sampleRequestCollectionController(@RequestBody RequestDto<PersonWrapper> dto){
+		Map<String, Object> map = new HashMap<>();
+		map.put("outerCheck", dto.getParam() instanceof PersonWrapper);
+		map.put("innerCheck", dto.getParam().getPersons().get(0) instanceof Person);
+		return new ResponseDto.Builder(map).build();
+	}
+
+	@Data
+	public static class Person{
 		private String name;
 		private int age;
+	}
+
+	@Data
+	public static class PersonWrapper{
+		private List<Person> persons;
 	}
 }
