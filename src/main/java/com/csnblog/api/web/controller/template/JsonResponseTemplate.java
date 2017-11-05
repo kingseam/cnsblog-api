@@ -44,13 +44,7 @@ public abstract class JsonResponseTemplate {
             responseResult.put(ResponseAttribute.ERROR_CODE_MSG.getCode(), e.getMessage());
         }
 
-        String resultArrayJson = null;
-        try {
-            resultArrayJson = mapper.writeValueAsString(responseResult);
-        } catch (Exception e) {
-            throw e;
-        }
-        return resultArrayJson;
+        return mapper.writeValueAsString(responseResult);
 
     }
 }
