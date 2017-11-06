@@ -1,5 +1,19 @@
 package com.csnblog.api.web.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.csnblog.api.common.constant.ResponseAttribute;
 import com.csnblog.api.common.dto.RequestDto;
 import com.csnblog.api.common.dto.ResponseDto;
@@ -8,15 +22,10 @@ import com.csnblog.api.web.controller.template.JsonResponseTemplate;
 import com.csnblog.api.web.domain.Sample;
 import com.csnblog.api.web.service.SampleService;
 import com.google.common.collect.Maps;
+
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/sample")
 public class SampleController {
