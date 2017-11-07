@@ -64,7 +64,7 @@ public class BoardControllerTest {
 		MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/board/ㅁㄴㅇㅁㄴㅇ")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())
-				.andExpect(status().isOk())
+				.andExpect(status().isNotFound())
 				.andReturn();
     }
 
