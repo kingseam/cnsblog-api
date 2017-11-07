@@ -33,7 +33,7 @@ public class BaseController {
 			}
 		}
 
-		LOG.error("MapiBaseController error, user-agent : {}, uri : {}", request.getHeader("User-Agent"), request.getRequestURI(), exec);
+		LOG.error("BaseController error, user-agent : {}, uri : {}", request.getHeader("User-Agent"), request.getRequestURI(), exec);
 
 
 		return new ResponseDto.Builder().useResFail(ResponseCode.FAIL);

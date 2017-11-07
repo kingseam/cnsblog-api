@@ -11,6 +11,7 @@ import lombok.Getter;
 public enum ResponseCode {
     SUCCESS("0000", "success"),
     DEFAULT("0000", "success"),
+    EXIST_USER("1000", "해당 아이디가 있습니다."),
 	FAIL("9999", "file");
 
     private final String code;
