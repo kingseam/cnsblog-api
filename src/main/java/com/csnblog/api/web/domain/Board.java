@@ -1,15 +1,17 @@
 package com.csnblog.api.web.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class Board {
-    private int boardId;
-    private int boardPid;
-    private String userId;
-    private String userName;
+    private int board_id;
+    private int board_pid;
+    private String user_id;
+    private String user_name;
     private String subject;
     private String contents;
     private int hits;
-    private String regDate;
+    private Date reg_date;
 }
