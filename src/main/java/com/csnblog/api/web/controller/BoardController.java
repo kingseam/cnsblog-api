@@ -23,7 +23,7 @@ public class BoardController extends BaseController {
 	@Autowired
 	private BoardService boardSerivce;
 
-	@GetMapping("/list/")
+	@GetMapping("/list")
 	public @ResponseBody ResponseDto listAll(){
 		ResponseDto resDto = new ResponseDto.Builder().build();
 		resDto.getData().put("list", boardSerivce.getAllBoardList());

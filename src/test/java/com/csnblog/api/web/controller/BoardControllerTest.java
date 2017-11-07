@@ -42,7 +42,7 @@ public class BoardControllerTest {
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void 게시판_전체_가져오기() throws Exception {
     	MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/board/list/1")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())
@@ -51,7 +51,25 @@ public class BoardControllerTest {
     }
 
     @Test
-    public void get1() throws Exception {
+    public void 게시번호_하나만_가져오기() throws Exception {
+		MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+    }
+
+    @Test
+    public void 파라매터_숫자아닌문자() throws Exception {
+		MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/board/list/ㅁㄴㅇㅁㄴㅇ")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andReturn();
+    }
+
+    @Test
+    public void 주소에_마지막_슬러시_추가() throws Exception {
 		MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/board/list/")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())
