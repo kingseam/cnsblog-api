@@ -10,7 +10,7 @@
               , subject
               , contents
               , hits
-              , reg_date
+              , DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
         from    ci_board  
         WHERE   board_id = #{id} 
     </select>
@@ -24,7 +24,7 @@
               , subject
               , contents
               , hits
-              , reg_date
+              , DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
         from    ci_board  
     </select>
 </mapper>

@@ -1,7 +1,5 @@
 package com.csnblog.api.web.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -13,5 +11,5 @@ public class Board {
     private String subject;
     private String contents;
     private int hits;
-    private Date reg_date;
+    private String reg_date;
 }
