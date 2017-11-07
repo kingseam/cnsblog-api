@@ -22,16 +22,16 @@ public class BoardController extends BaseController {
 	private BoardService boardSerivce;
 
 	@GetMapping("/board")
-	public @ResponseBody ResponseDto listAll(){
+	public @ResponseBody ResponseDto getAll(){
 		ResponseDto resDto = new ResponseDto.Builder().build();
 		resDto.getData().put("list", boardSerivce.getAllBoardList());
 		return resDto;
 	}
 
 	@GetMapping("/board/{id}")
-	public @ResponseBody ResponseDto list(@PathVariable("id") int id){
+	public @ResponseBody ResponseDto getOne(@PathVariable("id") int id){
 		ResponseDto resDto = new ResponseDto.Builder().build();
-		resDto.getData().put("list", boardSerivce.getBoardList(id));
+		resDto.getData().put("list", boardSerivce.getBoardDetail(id));
 		return resDto;
 	}
 }

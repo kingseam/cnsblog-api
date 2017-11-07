@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.csnblog.api.web.mapper.BoardMapper">
-    <select id="getBoardList" parameterType="int" resultType="com.csnblog.api.web.domain.Board">
+    <select id="getBoardDetail" parameterType="int" resultType="com.csnblog.api.web.domain.Board">
         select
                 board_id
               , board_pid
@@ -9,6 +9,19 @@
               , user_name
               , subject
               , contents
+              , hits
+              , DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
+        from    ci_board  
+        WHERE   board_id = #{id} 
+    </select>
+
+    <select id="getBoardList" parameterType="int" resultType="com.csnblog.api.web.domain.Board">
+        select
+                board_id
+              , board_pid
+              , user_id
+              , user_name
+              , subject
               , hits
               , DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
         from    ci_board  
@@ -22,7 +35,6 @@
               , user_id
               , user_name
               , subject
-              , contents
               , hits
               , DATE_FORMAT(reg_date, '%Y-%m-%d') as reg_date
         from    ci_board  

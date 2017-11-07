@@ -10,6 +10,7 @@ import com.csnblog.api.web.domain.Board;
 @Repository
 @Mapper
 public interface BoardMapper {
+	Board getBoardDetail(int id);
     List<Board> getBoardList(int id);
     List<Board> getAllBoardList();
 }

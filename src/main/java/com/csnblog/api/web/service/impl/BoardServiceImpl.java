@@ -16,6 +16,11 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
 
 	@Override
+	public Board getBoardDetail(int id) {
+		return boardMapper.getBoardDetail(id);
+	}
+
+	@Override
 	public List<Board> getBoardList(int id) {
 		return boardMapper.getBoardList(id);
 	}
