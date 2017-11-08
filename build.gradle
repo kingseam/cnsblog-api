@@ -19,20 +19,21 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile group: 'org.springframework', name: 'spring-websocket', version: '4.3.9.RELEASE'
-    compile group: 'commons-configuration', name: 'commons-configuration', version: '1.7'  
+    compile("org.springframework.boot:spring-boot-starter-web")      
     compile('org.openkoreantext:open-korean-text:2.1.1')
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("mysql:mysql-connector-java:5.0.8")
     compile('com.google.guava:guava:14.0.1')
     compile("org.projectlombok:lombok:1.16.18")
-    compile("org.apache.commons:commons-dbcp2:2.1.1")    
+    compile("org.apache.commons:commons-dbcp2:2.1.1")
+    compile('org.springframework.boot:spring-boot-devtools')    
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.8.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.7.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.5.7.RELEASE'    
+    compile group: 'org.springframework', name: 'spring-websocket', version: '4.3.9.RELEASE'
+    compile group: 'commons-configuration', name: 'commons-configuration', version: '1.7'
     runtime('mysql:mysql-connector-java') 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

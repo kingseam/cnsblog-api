@@ -20,7 +20,7 @@ public class BaseController {
 
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Throwable.class)
-	public @ResponseBody Object handleException(Exception exec, HttpServletRequest request,
+	public @ResponseBody ResponseDto handleException(Exception exec, HttpServletRequest request,
 			HttpServletResponse response) {
 		if (request.getRequestURL().toString().contains(".json")) {
 			response.setContentType("application/json");
@@ -36,6 +36,6 @@ public class BaseController {
 		LOG.error("BaseController error, user-agent : {}, uri : {}", request.getHeader("User-Agent"), request.getRequestURI(), exec);
 
 
-		return new ResponseDto.Builder().useResFail(ResponseCode.FAIL);
+		return new ResponseDto.Builder().useResFail(ResponseCode.FAIL).build();
 	}
 }
