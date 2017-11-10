@@ -3,22 +3,19 @@ server:
   context-path: /api
 
 security:
-  user:
-    name: user
-    password: test
   oauth2:
     resource:
       jwt:
         key-value: 
-            -----BEGIN PUBLIC KEY-----
-            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr5ui+5AA8v1LivSYNGdZ
-            0O76SBgktU3CjG+BcUb0mJ1fl34+So75bRI3/+n8AJP//Xp3OS62niQyRB5LEdCr
-            7ox5RAQlLHFkkJHQysi2/236Br8ZDiM1AfT4Hz5AQ9D4Pk5H/n6stKuS2ZffHAWA
-            W7/qK7PC6z4ncSlhVYr/zXNj7HVx9YFP7gZx6faaar6UvV96vX8W4xcITxvLpaCB
-            nF9TeOUxLHYI3tmnxmE8gRQXpdCH7X3IB3f4QfVCMIIrSD8d3si5w5VArlEMRQ9I
-            TEOA0Iq8VJKGjlu+haycTgIPJD3yGhU7Zb3EQfBZvQGC31beogycEf9imnvHDW4N
-            vQIDAQAB
-            -----END PUBLIC KEY-----
+                  -----BEGIN PUBLIC KEY-----
+                  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmTkggU+TC0A4O3uHaGt0
+                  xUSPcUc6m4g66tgJeYMZbjZjJ+hu90ua4igYCAoNLIWStk4sDhrtp1D/gqOjRA31
+                  8MAcUifI6TLKBaf9pVVyivnHX7ugHYTD/nkpqdHYfBcQtIsdVlhkDJTIuUKRQ94s
+                  QQedhKy1yvJ9hqx95EobnsqqrUrcXD4/PvOI0HmznV/4ZvGCP/0PG0frmznVtyzy
+                  FuXEi03Y8KecMa0C4Av840u2cwnF2/ncBeOZPVJDOFqRZNm5I6mLPW/XPDEBwo8G
+                  V5CDkIy5gLgRYhohGch+fozdJ3mlbiVRwSnpFKp2sErIM3XRLDo8L+O53tIIR9T6
+                  bQIDAQAB
+                  -----END PUBLIC KEY-----
    
 
 spring:

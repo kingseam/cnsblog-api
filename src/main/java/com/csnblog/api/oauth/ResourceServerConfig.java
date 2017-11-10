@@ -30,6 +30,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		System.out.println("publicKey="+publicKey);
 		//converter.setSigningKey("secret");
 		converter.setVerifierKey(publicKey);
 		return converter;
@@ -47,7 +48,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-        .antMatchers("/auth/**").hasRole("USER");
+		.anyRequest().permitAll();
 	}
 
 	@Override
