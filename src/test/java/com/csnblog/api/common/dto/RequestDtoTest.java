@@ -11,6 +11,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class RequestDtoTest {
     @Test
@@ -22,6 +23,7 @@ public class RequestDtoTest {
         RequestDto<?> dto = mapper.readValue(target, RequestDto.class);
 
         assertThat(dto.getVersion(), is("v10.0"));
+        assertThat(dto.getParam(), is(nullValue()));
     }
 
     @Test
