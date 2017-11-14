@@ -35,7 +35,7 @@ public class SampleControllerTest {
     @Test
     public void sampleRequestController_with_parameter() throws Exception {
         this.mockMvc.perform(post("/sample/request").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"version\":\"10.0\",\"param\":{\"name\":\"name\",\"age\":29}}"))
+                .content("{\"param\":{\"name\":\"name\",\"age\":29}}"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("{\"check\":true}")))
@@ -45,7 +45,7 @@ public class SampleControllerTest {
     @Test
     public void sampleRequestController_with_parameter_collection() throws Exception {
         this.mockMvc.perform(post("/sample/request/collection").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"version\":\"10.0\",\"param\":{\"persons\":[{\"name\":\"name\",\"age\":29}]}}"))
+                .content("{\"param\":{\"persons\":[{\"name\":\"name\",\"age\":29}]}}"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"outerCheck\":true")))

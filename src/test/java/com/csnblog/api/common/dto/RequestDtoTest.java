@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 public class RequestDtoTest {
     @Test
     public void deserialize() throws Exception {
-        String target = "{\"version\":\"v10.0\"}";
+        String target = "{}";
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -29,7 +29,7 @@ public class RequestDtoTest {
 
     @Test
     public void deserialize_generic() throws Exception {
-        String target = "{\"version\":\"v10.0\",\"param\":{\"name\":\"name\",\"age\":29}}";
+        String target = "{\"param\":{\"name\":\"name\",\"age\":29}}";
 
         ObjectMapper mapper = new ObjectMapper();
         RequestDto<Person> dto = mapper.readValue(target, new TypeReference<RequestDto<Person>>(){});
@@ -42,7 +42,7 @@ public class RequestDtoTest {
 
     @Test
     public void deserialize_paramMap() throws Exception {
-        String target = "{\"version\":\"v10.0\",\"paramMap\":{\"name\":\"name\",\"age\":29}}";
+        String target = "{\"paramMap\":{\"name\":\"name\",\"age\":29}}";
 
         ObjectMapper mapper = new ObjectMapper();
         RequestDto<?> dto = mapper.readValue(target, RequestDto.class);
