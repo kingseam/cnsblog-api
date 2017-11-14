@@ -1,14 +1,13 @@
 package com.csnblog.api.common.dto;
 
-import lombok.Getter;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import lombok.Getter;
+
 @Getter
 public class RequestDto<T> {
-    private String version;
     private T param;
     private Map<String, Object> paramMap;
 

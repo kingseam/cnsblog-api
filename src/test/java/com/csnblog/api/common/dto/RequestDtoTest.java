@@ -1,17 +1,19 @@
 package com.csnblog.api.common.dto;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import org.junit.Test;
-
-import java.util.Map;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.nullValue;
+
+import java.util.Map;
+
+import org.junit.Test;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 public class RequestDtoTest {
     @Test
@@ -22,7 +24,6 @@ public class RequestDtoTest {
 
         RequestDto<?> dto = mapper.readValue(target, RequestDto.class);
 
-        assertThat(dto.getVersion(), is("v10.0"));
         assertThat(dto.getParam(), is(nullValue()));
     }
 
@@ -35,7 +36,6 @@ public class RequestDtoTest {
 
         Person expect = new Person("name", 29);
 
-        assertThat(dto.getVersion(), is("v10.0"));
         assertThat(dto.getParam(), instanceOf(Person.class));
         assertThat(dto.getParam(), is(expect));
     }
@@ -49,7 +49,6 @@ public class RequestDtoTest {
 
         Map<String, Object> map = dto.getParamMap();
 
-        assertThat(dto.getVersion(), is("v10.0"));
         assertThat(map.get("name"), is("name"));
         assertThat(map.get("age"), is(29));
     }
