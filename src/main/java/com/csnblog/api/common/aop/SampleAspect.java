@@ -42,7 +42,7 @@ public class SampleAspect {
             }
         }
 
-        log.info("111");
+        log.info("");
         log.info("---------------------------------------------------------------------------------------------------------------------------");
         log.info("Processing Time({}) : {} ms", point.getSignature().toShortString(), processTime);
         log.info("Param : {}", sb.toString());
