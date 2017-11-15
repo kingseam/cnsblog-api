@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SampleAspect {
     @Before("execution(* com.csnblog.api..*.*(..))")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
 
         log.info("call method before :: {}", signature.getName());
@@ -33,10 +33,10 @@ public class SampleAspect {
         StringBuilder sb = new StringBuilder();
         Object[] params = point.getArgs();
 
-        int i=0;
-        for(Object param : params) {
-            if(param != null) {
-                if(i > 0)	sb.append(", ");
+        int i = 0;
+        for (Object param : params) {
+            if (param != null) {
+                if (i > 0) sb.append(", ");
                 sb.append(param.toString());
                 i++;
             }
@@ -53,7 +53,7 @@ public class SampleAspect {
     }
 
     @After("execution(* com.csnblog.api..*.*(..))")
-    public void after(JoinPoint joinPoint){
+    public void after(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
 
         log.info("call method after :: {}", signature.getName());
