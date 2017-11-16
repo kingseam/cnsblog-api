@@ -1,5 +1,6 @@
 package com.csnblog.api.common.aop;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -25,9 +26,10 @@ public class SampleAspect {
 
     @Around("within(com.csnblog.api.web.controller.*)")
     public Object logBefore(ProceedingJoinPoint point) throws Throwable {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Object resultVal = point.proceed();
 
         long start = System.currentTimeMillis();
-        Object resultVal = point.proceed();
         long processTime = System.currentTimeMillis() - start;
 
         StringBuilder sb = new StringBuilder();
@@ -45,8 +47,8 @@ public class SampleAspect {
         log.info("");
         log.info("---------------------------------------------------------------------------------------------------------------------------");
         log.info("Processing Time({}) : {} ms", point.getSignature().toShortString(), processTime);
-        log.info("Param : {}", sb.toString());
-        log.info("Result : {}", resultVal.toString());
+        log.info("Param : ");
+        log.info("Result : {}", objectMapper.writeValueAsString(resultVal));
         log.info("---------------------------------------------------------------------------------------------------------------------------");
 
         return resultVal;
