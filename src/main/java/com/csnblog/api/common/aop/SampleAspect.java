@@ -39,7 +39,7 @@ public class SampleAspect {
         for (Object param : params) {
             if (param != null) {
                 if (i > 0) sb.append(", ");
-                sb.append(param.toString());
+                sb.append(objectMapper.writeValueAsString(param));
                 i++;
             }
         }
@@ -47,7 +47,7 @@ public class SampleAspect {
         log.info("");
         log.info("---------------------------------------------------------------------------------------------------------------------------");
         log.info("Processing Time({}) : {} ms", point.getSignature().toShortString(), processTime);
-        log.info("Param : ");
+        log.info("Param : {}", sb.toString());
         log.info("Result : {}", objectMapper.writeValueAsString(resultVal));
         log.info("---------------------------------------------------------------------------------------------------------------------------");
 
