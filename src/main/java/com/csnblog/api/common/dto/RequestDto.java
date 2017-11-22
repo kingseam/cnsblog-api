@@ -1,14 +1,13 @@
 package com.csnblog.api.common.dto;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
-
 import lombok.Getter;
 
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Supplier;
+
 @Getter
-public class RequestDto<T> {
-    private T param;
+public class RequestDto {
     private Map<String, Object> paramMap;
 
     @SuppressWarnings("unchecked")
@@ -22,24 +21,33 @@ public class RequestDto<T> {
         return (V) result;
     }
 
-    /**
-     * param 이 null 일 경우 반환할 기본객체 반환
-     * @param t
-     * @return
-     */
-    public T getParamOrDefault(T t){
-        return Optional.ofNullable(this.param)
-                .orElse(t);
+    @SuppressWarnings("unchecked")
+    public <V> V getOrDefaultLazy(String key, Supplier<V> supplier){
+        Object result = this.paramMap.get(key);
+
+        return Objects.isNull(result) ? supplier.get() : (V) result;
     }
 
-    /**
-     * param 이 null 일 경우 반환할 기본객체 반환
-     * 객체 생성 비용이 클경우를 대비한 lazy 방식
-     * @param supplier
-     * @return
-     */
-    public T getParamOrDefaultGet(Supplier<T> supplier){
-        return Optional.ofNullable(this.param)
-                .orElseGet(supplier);
+    public <V> V get(String key, Class<V> genericClass){
+        return genericClass.cast(this.paramMap.get(key));
+    }
+
+    public <V> V getOrDefault(String key, Class<V> genericClass, V v){
+        Object result = this.paramMap.getOrDefault(key, v);
+        return genericClass.cast(result);
+    }
+
+    public <V> V getOrDefaultLazy(String key, Class<V> genericClass, Supplier<V> supplier){
+        Object result = this.paramMap.get(key);
+
+        return Objects.isNull(result) ? supplier.get() : genericClass.cast(result);
+    }
+
+    // test를 위한 map 주입용 팩토리 메서드
+    static RequestDto forTest(Map<String, Object> map){
+        RequestDto dto = new RequestDto();
+        dto.paramMap = map;
+
+        return dto;
     }
 }

@@ -1,56 +1,91 @@
 package com.csnblog.api.common.dto;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.hamcrest.core.IsNull.nullValue;
-
-import java.util.Map;
-
-import org.junit.Test;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RequestDtoTest {
-    @Test
-    public void deserialize() throws Exception {
-        String target = "{}";
+    private RequestDto dto;
 
-        ObjectMapper mapper = new ObjectMapper();
+    @Before
+    public void setUp(){
+        Person person = new Person("LichKing", 29);
 
-        RequestDto<?> dto = mapper.readValue(target, RequestDto.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("int", 500);
+        map.put("string", "hello");
+        map.put("person", person);
 
-        assertThat(dto.getParam(), is(nullValue()));
+        this.dto = RequestDto.forTest(map);
     }
 
     @Test
-    public void deserialize_generic() throws Exception {
-        String target = "{\"param\":{\"name\":\"name\",\"age\":29}}";
+    public void cast_primitive(){
+        int number = this.dto.get("int");
 
-        ObjectMapper mapper = new ObjectMapper();
-        RequestDto<Person> dto = mapper.readValue(target, new TypeReference<RequestDto<Person>>(){});
-
-        Person expect = new Person("name", 29);
-
-        assertThat(dto.getParam(), instanceOf(Person.class));
-        assertThat(dto.getParam(), is(expect));
+        assertThat(number, is(500));
     }
 
     @Test
-    public void deserialize_paramMap() throws Exception {
-        String target = "{\"paramMap\":{\"name\":\"name\",\"age\":29}}";
+    public void cast_string(){
+        String string = this.dto.get("string");
 
-        ObjectMapper mapper = new ObjectMapper();
-        RequestDto<?> dto = mapper.readValue(target, RequestDto.class);
+        assertThat(string, is("hello"));
+    }
 
-        Map<String, Object> map = dto.getParamMap();
+    @Test
+    public void cast_object(){
+        // given
+        Person expected = new Person("LichKing", 29);
 
-        assertThat(map.get("name"), is("name"));
-        assertThat(map.get("age"), is(29));
+        // when
+        Person actually = this.dto.get("person");
+
+        // then
+        assertThat(actually, is(expected));
+    }
+
+    @Test
+    public void cast_primitive_generic(){
+        int number = this.dto.get("int", Integer.class);
+
+        assertThat(number, is(500));
+    }
+
+    @Test
+    public void cast_string_generic(){
+        String string = this.dto.get("string", String.class);
+
+        assertThat(string, is("hello"));
+    }
+
+    @Test
+    public void cast_object_generic(){
+        // given
+        Person expected = new Person("LichKing", 29);
+
+        // when
+        Person actually = this.dto.get("person", Person.class);
+
+        // then
+        assertThat(actually, is(expected));
+    }
+
+    @Test(expected = ClassCastException.class)
+    public void cast_exception_primitive(){
+        int number = this.dto.get("string");
+    }
+
+    @Test(expected = ClassCastException.class)
+    public void cast_exception_string(){
+        String string = this.dto.get("int", String.class);
     }
 
     @EqualsAndHashCode

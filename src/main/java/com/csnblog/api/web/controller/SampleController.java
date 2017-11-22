@@ -1,29 +1,18 @@
 package com.csnblog.api.web.controller;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.csnblog.api.common.constant.ResponseAttribute;
-import com.csnblog.api.common.dto.RequestDto;
 import com.csnblog.api.common.dto.ResponseDto;
 import com.csnblog.api.common.enumclass.ResponseCode;
 import com.csnblog.api.web.controller.template.JsonResponseTemplate;
 import com.csnblog.api.web.domain.Sample;
 import com.csnblog.api.web.service.SampleService;
 import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import lombok.Data;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -79,31 +68,5 @@ public class SampleController {
 		resDto.getData().put("sampleResultData", sampleResultData);
 
 		return resDto;
-	}
-
-	@PostMapping("/request")
-	public @ResponseBody ResponseDto sampleRequestController(@RequestBody RequestDto<Person> dto){
-		Map<String, Object> map = new HashMap<>();
-		map.put("check", dto.getParam() instanceof Person);
-		return new ResponseDto.Builder(map).build();
-	}
-
-	@PostMapping("/request/collection")
-	public @ResponseBody ResponseDto sampleRequestCollectionController(@RequestBody RequestDto<PersonWrapper> dto){
-		Map<String, Object> map = new HashMap<>();
-		map.put("outerCheck", dto.getParam() instanceof PersonWrapper);
-		map.put("innerCheck", dto.getParam().getPersons().get(0) instanceof Person);
-		return new ResponseDto.Builder(map).build();
-	}
-
-	@Data
-	public static class Person{
-		private String name;
-		private int age;
-	}
-
-	@Data
-	public static class PersonWrapper{
-		private List<Person> persons;
 	}
 }
