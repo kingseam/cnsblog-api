@@ -1,6 +1,7 @@
 package com.csnblog.api.web.controller;
 
 import com.csnblog.api.common.constant.ResponseAttribute;
+import com.csnblog.api.common.dto.RequestDto;
 import com.csnblog.api.common.dto.ResponseDto;
 import com.csnblog.api.common.enumclass.ResponseCode;
 import com.csnblog.api.web.controller.template.JsonResponseTemplate;
@@ -68,5 +69,10 @@ public class SampleController {
 		resDto.getData().put("sampleResultData", sampleResultData);
 
 		return resDto;
+	}
+
+	@PostMapping("/mapping")
+	public String postMappingTest(@RequestBody RequestDto dto){
+		return dto.get("name");
 	}
 }

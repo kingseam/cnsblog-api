@@ -23,9 +23,9 @@ public class UserController extends BaseController {
 	public @ResponseBody ResponseDto insertUser(@RequestBody RequestDto reqDto){
 		ResponseDto resDto = new ResponseDto.Builder().build();
 //		LOG.info("users reqDto = {}", reqDto.getParam());
-		LOG.info("users reqDto = {}", reqDto.getParamMap());
+		LOG.info("users reqDto = {}", reqDto.getParam());
 		// password crypt
-		User user = User.of(reqDto.getParamMap());
+		User user = User.of(reqDto.getParam());
 //		reqDto.getParam().setPassword(new BCryptPasswordEncoder().encode(reqDto.getParam().getPassword()));
 
 		if(!userSerivce.insertUser(user)){
