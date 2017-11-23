@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.csnblog.api.web.mapper.SampleMapper">
-    <select id="getSampleList" resultType="com.csnblog.api.web.domain.Sample">
+<mapper namespace="com.cnsblog.api.web.mapper.SampleMapper">
+    <select id="getSampleList" resultType="com.cnsblog.api.web.domain.Sample">
         select id
               , name
         from T_SAMPLE
