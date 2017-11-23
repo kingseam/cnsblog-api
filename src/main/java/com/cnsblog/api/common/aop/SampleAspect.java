@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Slf4j
 public class SampleAspect {
-    @Before("execution(* com.csnblog.api..*.*(..))")
+    @Before("execution(* com.cnsblog.api..*.*(..))")
     public void before(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
 
@@ -24,7 +24,7 @@ public class SampleAspect {
     }
 
 
-    @Around("within(com.csnblog.api.web.controller.*)")
+    @Around("within(com.cnsblog.api.web.controller.*)")
     public Object logBefore(ProceedingJoinPoint point) throws Throwable {
         ObjectMapper objectMapper = new ObjectMapper();
         Object resultVal = point.proceed();
