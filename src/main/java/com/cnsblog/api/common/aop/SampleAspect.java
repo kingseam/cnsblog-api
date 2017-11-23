@@ -54,7 +54,7 @@ public class SampleAspect {
         return resultVal;
     }
 
-    @After("execution(* com.csnblog.api..*.*(..))")
+    @After("execution(* com.cnsblog.api..*.*(..))")
     public void after(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
 

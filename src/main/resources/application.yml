@@ -27,5 +27,5 @@ spring:
 
 
 mybatis:
-    type-aliases-package: com.csnblog.api.web.domain
+    type-aliases-package: com.cnsblog.api.web.domain
     mapper-locations: classpath:mappers/*.xml
