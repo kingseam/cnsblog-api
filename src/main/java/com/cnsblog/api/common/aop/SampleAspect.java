@@ -1,5 +1,6 @@
 package com.cnsblog.api.common.aop;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,6 +12,10 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Arrays;
+
+import static java.util.stream.Collectors.joining;
 
 @Component
 @Aspect
@@ -32,26 +37,28 @@ public class SampleAspect {
         long start = System.currentTimeMillis();
         long processTime = System.currentTimeMillis() - start;
 
-        StringBuilder sb = new StringBuilder();
         Object[] params = point.getArgs();
 
-        int i = 0;
-        for (Object param : params) {
-            if (param != null) {
-                if (i > 0) sb.append(", ");
-                sb.append(objectMapper.writeValueAsString(param));
-                i++;
-            }
-        }
+        String paramMessage = Arrays.stream(params)
+                .map(param -> toJson(objectMapper, param))
+                .collect(joining(", "));
 
         log.info("");
         log.info("---------------------------------------------------------------------------------------------------------------------------");
         log.info("Processing Time({}) : {} ms", point.getSignature().toShortString(), processTime);
-        log.info("Param : {}", sb.toString());
+        log.info("Param : {}", paramMessage);
         log.info("Result : {}", objectMapper.writeValueAsString(resultVal));
         log.info("---------------------------------------------------------------------------------------------------------------------------");
 
         return resultVal;
+    }
+
+    private String toJson(ObjectMapper objectMapper, Object target){
+        try {
+            return objectMapper.writeValueAsString(target);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("json serialize exception", e);
+        }
     }
 
     @After("execution(* com.cnsblog.api..*.*(..))")
