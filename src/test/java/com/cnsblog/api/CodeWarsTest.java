@@ -7,11 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,26 +23,7 @@ import org.junit.Test;
 
 public class CodeWarsTest {
 
-	@Test
-	public void add() {
-		System.out.println("aaa=="+LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYMMDDHHMMSS")));
-		long a = Long.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYMMDDHHMMSS")).toString());
-		Date test = new Date(LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYMMDDHHMMSS")).toString());
 
-
-		System.out.println("bbb=="+test);
-	}
-
-	private static void testing(int actual, int expected) {
-		assertEquals(expected, actual);
-	}
-
-
-	@Test
-	public void asd() {
-		  Map<String, Object> registParam = null;
-	        String menuTestYn = registParam.get("menuTestYn") == null ? "" : (String)registParam.get("menuTestYn");
-	}
 
 	@Test
 	public void codeMather() {
@@ -68,12 +46,6 @@ public class CodeWarsTest {
 		assertEquals(Tests.codeMather2("9961"),true);
 	}
 
-	@Test
-	public void test11() {
-		testing(Tests.nbYear(1500, 5, 100, 5000), 15);
-		testing(Tests.nbYear(1500000, 2.5, 10000, 2000000), 10);
-		testing(Tests.nbYear(1500000, 0.25, 1000, 2000000), 94);
-	}
 
 	@Test
 	public void exampleTests() {
