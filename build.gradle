@@ -26,7 +26,13 @@ dependencies {
     compile('com.google.guava:guava:14.0.1')
     compile("org.projectlombok:lombok:1.16.18")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
-    compile('org.springframework.boot:spring-boot-devtools')    
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.webjars:webjars-locator")
+    compile("org.webjars:sockjs-client:1.0.2")
+    compile("org.webjars:stomp-websocket:2.3.3")
+    compile("org.webjars:bootstrap:3.3.7")
+    compile("org.webjars:jquery:3.1.0")
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.8.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.2.RELEASE'
@@ -34,6 +40,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.5.7.RELEASE'    
     compile group: 'org.springframework', name: 'spring-websocket', version: '4.3.9.RELEASE'
     compile group: 'commons-configuration', name: 'commons-configuration', version: '1.7'
+    compile group: 'joda-time', name: 'joda-time', version: '2.3'
     runtime('mysql:mysql-connector-java') 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
