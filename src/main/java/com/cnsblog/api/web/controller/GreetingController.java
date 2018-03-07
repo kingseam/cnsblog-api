@@ -17,6 +17,6 @@ public class GreetingController extends BaseController {
 	public String fromClient(String content) throws Exception {
         log.info("Message from client: {}", content);
         Thread.sleep(1000);
-        return "Hello, " + content;
+        return content;
     }
 }
