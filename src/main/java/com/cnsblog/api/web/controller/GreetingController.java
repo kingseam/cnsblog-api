@@ -16,7 +16,6 @@ public class GreetingController extends BaseController {
     @MessageMapping("/from-client")
 	public String fromClient(String content) throws Exception {
         log.info("Message from client: {}", content);
-        Thread.sleep(1000);
         return content;
     }
 }
